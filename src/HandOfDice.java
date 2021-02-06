@@ -4,13 +4,11 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class HandOfDice {
-    //Main just creates a fresh hand and plays a turn
-    public static void main(String[] args) {
-        int numDice = 5; //This is set to five for a traditional game of Yahtzee
-        int numTurns = 3; //Refers to the number of turns in a players hand, set to 3 for traditional gameplay
+    private static int numDice = 5; //Set to five for traditional play
+    private static int numTurns = 3; //Set to three for traditional play
 
-        Die[] currHand = rollNewHand(numDice);
-
+    //Uses and returns currHand to play three turns/rolls, aka a "hand". Sorts the hand before returning it
+    public static Die[] playHand (Die[] currHand) {
         for (int i = 0; i < numTurns; i++) {
             displayHand(currHand);
 
@@ -18,13 +16,15 @@ public class HandOfDice {
 
             processUserSelection(numDice, userSelection, currHand);
         }
+
         Arrays.sort(currHand, Comparator.comparing(Die::getFace)); //Sorts the hand in ascending order
             System.out.println("Your final sorted hand is: " + Arrays.toString(currHand));
-                ScoreCard.processSortedHand(currHand);
+
+        return currHand;
     }
 
     //Returns a random hand of dice
-    public static Die[] rollNewHand(int numDice) {
+    public static Die[] rollNewHand() {
         Die[] newHand = new Die[numDice];
 
         for (int i = 0; i < numDice; i++) {
@@ -52,7 +52,7 @@ public class HandOfDice {
         return userSelection;
     }
 
-    //Runs through userSelection string
+    //Runs through userSelection string and re-rolls all dice that user did not enter 'y' to
     public static Die[] processUserSelection(int numDice, String userSelection, Die[] currHand) {
         char tempChar;
 
@@ -67,5 +67,12 @@ public class HandOfDice {
         return currHand;
     }
 
+    //Getters
+    public static int getNumDice() {return numDice;}
+    public static int getNumTurns() {return numTurns;}
+
+    //Setters
+    public static void setNumDice(int numDiceParam) {numDice = numDiceParam;}
+    public static void setNumTurns(int numTurnsParam) {numTurns = numTurnsParam;}
 
 }
