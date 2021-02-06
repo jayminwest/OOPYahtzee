@@ -1,3 +1,15 @@
+/*
+Jaymin West
+CPSC224, Spring 2021
+Homework #1
+
+The purpose of this program is to play essentially the most bare bones version of Yahtzee. This version only has
+one hand or three roles and one score card. The user is able to keep dice from previous roles or re-role the whole hand.
+The player has no name or information and there is no saved data from one hand to the next. The score card simply shows the
+scores from the single hand after the three roles have been made.
+
+ */
+
 import java.util.Scanner;
 
 public class Main {

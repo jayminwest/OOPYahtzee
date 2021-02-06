@@ -51,7 +51,7 @@ public class ScoreCard {
             }
         }
 
-        //If statement for large straight and small straight
+        //If statements for large straight and small straight
         if ((sortedHand[0].getFace() == sortedHand[1].getFace() - 1) &&
                 (sortedHand[1].getFace() == sortedHand[2].getFace() - 1) &&
                 (sortedHand[2].getFace() == sortedHand[3].getFace() - 1) &&
@@ -64,6 +64,8 @@ public class ScoreCard {
         } else if ((upperScores[2] > 0) && (upperScores[3] > 0) && (upperScores[4] > 0) && (upperScores[5] > 0)) {
             smStraight = 30;
         }
+
+        //Need to add fullHouse
 
         int[] lowerScores = {threeOfKind, fourOfKind, fullHouse, smStraight, lgStraight, yahtzee, chance};
 
