@@ -28,6 +28,7 @@ public class Main {
                 newGameUserSelection = tempObj.nextLine();
                     newGameUserSelection = newGameUserSelection.replaceAll("\\s", ""); //redundant but better safe than sorry
                 System.out.println("User selection: " + newGameUserSelection);
+
         }
     }
 }

@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -40,15 +41,20 @@ public class ScoreCard {
     //Processes lower section scores using the upper section scores
     public static int[] getLowerScores(Die[] sortedHand, int[] upperScores) {
         int threeOfKind = 0, fourOfKind = 0, fullHouse = 0, smStraight = 0, lgStraight = 0, yahtzee = 0, chance = IntStream.of(upperScores).sum();
+        int [] diceFrequency = getDiceFrequency(sortedHand);
 
-        //Loop for yahtzee, 3 of a kind, or 4 of a kind (could not get || to work for some reason so split it into if statements)
+        //Loop for yahtzee, 3 of a kind, or 4 of a kind
         for (int i = 0; i < sortedHand.length; i++) {
-            if (upperScores[i] == i * 4) {
-                fourOfKind = IntStream.of(upperScores).sum();
-            }
-            if (upperScores[i] == i * 3) {
+            if (diceFrequency[i] == 3) {
                 threeOfKind = IntStream.of(upperScores).sum();
             }
+            if (diceFrequency[i] == 4) {
+                fourOfKind = IntStream.of(upperScores).sum();
+            }
+            if (diceFrequency[i] == 5) {
+                yahtzee = 100; //100 because a yahtzee is worth 100 points
+            }
+
         }
 
         //If statements for large straight and small straight
@@ -66,10 +72,34 @@ public class ScoreCard {
         }
 
         //Need to add fullHouse
+        if ((diceFrequency[0] == 3 || diceFrequency[1] == 3 || diceFrequency[2] == 3 ||  //Checking for three of a kind
+                diceFrequency[3] == 3 || diceFrequency[4] == 3 || diceFrequency[5] == 3) && //Three of a kind
+                (diceFrequency[0] == 2 || diceFrequency[1] == 2 || diceFrequency[2] == 2 || //Checking for two of a kind
+                        diceFrequency[3] == 2 || diceFrequency[4] == 2 || diceFrequency[5] == 2)) { //Two of a kind
+            fullHouse = 25;
+        }
 
         int[] lowerScores = {threeOfKind, fourOfKind, fullHouse, smStraight, lgStraight, yahtzee, chance};
 
         return lowerScores;
+    }
+
+    //Counts the frequency of each face. Currently can only process six faces, which is a flaw
+    public static int[] getDiceFrequency(Die[] currHand) {
+        int [] diceFrequency = {0, 0, 0, 0, 0, 0}; //all faces' frequencies set to 0
+
+        for (int i = 0; i < currHand.length; i++) {
+            if (currHand[i].getFace() == 1) diceFrequency[0]++;
+            if (currHand[i].getFace() == 2) diceFrequency[1]++;
+            if (currHand[i].getFace() == 3) diceFrequency[2]++;
+            if (currHand[i].getFace() == 4) diceFrequency[3]++;
+            if (currHand[i].getFace() == 5) diceFrequency[4]++;
+            if (currHand[i].getFace() == 6) diceFrequency[5]++;
+        }
+
+        //System.out.println("Frequency: " + Arrays.toString(diceFrequency)); //Testing purposes
+
+        return diceFrequency;
     }
 
     //Displays the score card using the upperScores and lowerScores array and numFaces from the "Die" class
