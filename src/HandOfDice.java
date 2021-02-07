@@ -58,6 +58,7 @@ public class HandOfDice {
     //Asks user to enter their choices and returns them as a string
     public static String getUserSelection() {
         Scanner tempObj = new Scanner(System.in);
+        String tempString = "";
 
         System.out.println("Enter dice to keep (y or n): ");
 
@@ -65,7 +66,13 @@ public class HandOfDice {
             userSelection = tempObj.nextLine();
             userSelection = userSelection.replaceAll("\\s", ""); //removes spaces/white space
 
-        return userSelection;
+        //if user doesnt enter in all characters it re prompts them
+        if (userSelection.length() < numDice) {
+            System.out.println("Please enter " + numDice + " characters");
+        } else{
+            return userSelection;
+        }
+      return getUserSelection();
     }
 
     /**
