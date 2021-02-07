@@ -1,10 +1,22 @@
+/**
+ * ScoreCard is where the scoring of the game takes place. This class uses HandOfDice and Die to process, calculate,
+ * and Display the user's score. The scorecard is split into upper and lower sections and this is refleted in the methods
+ * used.
+ *
+ * @author Jaymin West
+ */
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class ScoreCard {
-    //Takes sorted hand from result of HandOfDice and totals up scores
+    /**
+     * Takes sorted hand from result of HandOfDice and totals up scores
+     *
+     * @param sortedHand which is passed in from HandOfDice
+     */
     public static void processSortedHand(Die[] sortedHand) {
         int[] upperScores = getUpperScores(sortedHand);
         int[] lowerScores = getLowerScores(sortedHand, upperScores);
@@ -12,7 +24,12 @@ public class ScoreCard {
         displayScoreCard(upperScores, lowerScores);
     }
 
-    //Uses a loop to determine totals of each face for the upper section of the score card
+    /**
+     * Uses a loop to determine totals of each face for the upper section of the score card
+     *
+     * @param sortedHand is the current hand being passed in to be scored
+     * @return int[] where the array is full of the upper Section's scores
+     */
     public static int[] getUpperScores(Die[] sortedHand) {
         int oneTotal = 0, twoTotal = 0, threeTotal = 0, fourTotal = 0, fiveTotal = 0 ,sixTotal = 0;
 
@@ -38,7 +55,13 @@ public class ScoreCard {
         return upperScores;
     }
 
-    //Processes lower section scores using the upper section scores
+    /**
+     * Processes lower section scores using the upper section scores and diceFrequency
+     *
+     * @param sortedHand is the same sorted Die array from HandOfDice's result
+     * @param upperScores are the calculated scores from the getUpperScores method
+     * @return int[] lowerScores where lowerScores is the total points for each catagory on the lower score section
+     */
     public static int[] getLowerScores(Die[] sortedHand, int[] upperScores) {
         int threeOfKind = 0, fourOfKind = 0, fullHouse = 0, smStraight = 0, lgStraight = 0, yahtzee = 0, chance = IntStream.of(upperScores).sum();
         int [] diceFrequency = getDiceFrequency(sortedHand);
@@ -84,7 +107,12 @@ public class ScoreCard {
         return lowerScores;
     }
 
-    //Counts the frequency of each face. Currently can only process six faces, which is a flaw
+    /**
+     * Counts the frequency of each face in a given hand. Currently can only process six faces, which is a flaw
+     *
+     * @param currHand is the HandOfDice being used to find frequency
+     * @return int[] diceFrequency is the indexed array full of each face's frequency
+     */
     public static int[] getDiceFrequency(Die[] currHand) {
         int [] diceFrequency = {0, 0, 0, 0, 0, 0}; //all faces' frequencies set to 0
 
@@ -102,7 +130,12 @@ public class ScoreCard {
         return diceFrequency;
     }
 
-    //Displays the score card using the upperScores and lowerScores array and numFaces from the "Die" class
+    /**
+     * Displays the score card using the upperScores and lowerScores array and numFaces from the "Die" class
+     *
+     * @param upperScores should be int[] from getUpperScores
+     * @param lowerScores should be int[] from getLowerScores
+     */
     public static void displayScoreCard(int[] upperScores, int[] lowerScores) {
         String[] lowerSectionNames = {"Three of a Kind", "Four of a Kind", "Full House", "Small Straight", "Large Straight", "Yahtzee", "Chance"};
         //Loop to display upper section:

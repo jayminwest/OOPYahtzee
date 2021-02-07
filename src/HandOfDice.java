@@ -1,3 +1,11 @@
+/**
+ * HandOfDice is the bulk of the gameplay. It creates an array of Die and uses that to roll, re-roll,
+ * and keep dice that the player chooses before sorting it at the end of the hand.
+ *
+ * @author Jaymin West
+ *
+ */
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -7,7 +15,9 @@ public class HandOfDice {
     private static int numDice = 5; //Set to five for traditional play
     private static int numTurns = 3; //Set to three for traditional play
 
-    //Uses and returns currHand to play three turns/rolls, aka a "hand". Sorts the hand before returning it
+    /**
+     * Uses and returns currHand to play three turns/rolls, aka a "hand". Sorts the hand before returning it
+     */
     public static Die[] playHand (Die[] currHand) {
         for (int i = 0; i < numTurns; i++) {
             displayHand(currHand);
@@ -23,7 +33,10 @@ public class HandOfDice {
         return currHand;
     }
 
-    //Returns a random hand of dice
+    /**
+     * Returns a random hand of dice
+     * @return Die[] full of random faces from the Die DVC
+     */
     public static Die[] rollNewHand() {
         Die[] newHand = new Die[numDice];
 
@@ -34,7 +47,10 @@ public class HandOfDice {
         return newHand;
     }
 
-    //Displays the hand that is passed in
+    /**
+     * Displays the hand that is passed in
+     * @param currHand where currHand is the current hand
+     */
     public static void displayHand(Die[] currHand) {
         System.out.println("Your hand is: " + Arrays.toString(currHand));
     }
@@ -52,7 +68,13 @@ public class HandOfDice {
         return userSelection;
     }
 
-    //Runs through userSelection string and re-rolls all dice that user did not enter 'y' to
+    /**
+     * Runs through userSelection string and re-rolls all dice that user did not enter 'y' to
+     * @param numDice this is the generic number of dice for the whole class
+     * @param userSelection where userSelection is the y's and n's the user entered
+     * @param currHand this is the current hand passed in
+     * @return Die[]
+     */
     public static Die[] processUserSelection(int numDice, String userSelection, Die[] currHand) {
         char tempChar;
 
@@ -67,11 +89,17 @@ public class HandOfDice {
         return currHand;
     }
 
-    //Getters
+    /**
+     * Getters:
+     * @return numDice and numTurns respectively
+     */
     public static int getNumDice() {return numDice;}
     public static int getNumTurns() {return numTurns;}
 
-    //Setters
+    /**
+     * Setters
+     * @param numDiceParam and numTurnsParam respectively
+     */
     public static void setNumDice(int numDiceParam) {numDice = numDiceParam;}
     public static void setNumTurns(int numTurnsParam) {numTurns = numTurnsParam;}
 

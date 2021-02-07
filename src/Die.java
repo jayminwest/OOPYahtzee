@@ -1,3 +1,9 @@
+/**
+ * Die is a simple class that holds numFaces and face as attributes. numFaces determines how many faces each die will have
+ * and face is the number that the object rolls in the DVC.
+ * @author Jaymin West
+ */
+
 import static java.lang.String.valueOf;
 
 public class Die {
