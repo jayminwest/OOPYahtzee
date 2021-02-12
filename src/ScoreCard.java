@@ -81,6 +81,7 @@ public class ScoreCard {
         }
 
         //If statements for large straight and small straight
+        //This should be changed for HW2 so it is not limited to 1-6 combos
         if ((sortedHand[0].getFace() == sortedHand[1].getFace() - 1) &&
                 (sortedHand[1].getFace() == sortedHand[2].getFace() - 1) &&
                 (sortedHand[2].getFace() == sortedHand[3].getFace() - 1) &&
@@ -116,7 +117,7 @@ public class ScoreCard {
     public static int[] getDiceFrequency(Die[] currHand) {
         int [] diceFrequency = {0, 0, 0, 0, 0, 0}; //all faces' frequencies set to 0
 
-        for (int i = 0; i < currHand.length; i++) {
+        for (int i = 0; i < currHand.length; i++) { //must change this loop so it can be played with different settings
             if (currHand[i].getFace() == 1) diceFrequency[0]++;
             if (currHand[i].getFace() == 2) diceFrequency[1]++;
             if (currHand[i].getFace() == 3) diceFrequency[2]++;

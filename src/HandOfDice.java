@@ -12,8 +12,8 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class HandOfDice {
-    private static int numDice = 5; //Set to five for traditional play
-    private static int numTurns = 3; //Set to three for traditional play
+    private static int numDice = 5; //Must change this so value comes from Settings class
+    private static int numTurns = 3; //Must change this so value comes from Settings class
 
     /**
      * Uses and returns currHand to play three turns/rolls, aka a "hand". Sorts the hand before returning it

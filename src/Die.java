@@ -9,7 +9,7 @@ import static java.lang.String.valueOf;
 public class Die {
    //Fields:
    private int face;
-   private static int numFaces = 6;
+   private static int numFaces = 6; //must change this so it comes from settings now
 
    //EVC:
    public Die(int paramFace) {
