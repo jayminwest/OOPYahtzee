@@ -10,6 +10,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class ScoreCard {
     /**
@@ -18,8 +19,8 @@ public class ScoreCard {
      * @param sortedHand which is passed in from HandOfDice
      */
     public static void processSortedHand(Die[] sortedHand) {
-        int[] upperScores = getUpperScores(sortedHand);
-        int[] lowerScores = getLowerScores(sortedHand, upperScores);
+        ArrayList<Integer> upperScores = getUpperScores(sortedHand);
+        ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
 
         displayScoreCard(upperScores, lowerScores);
     }
@@ -30,29 +31,19 @@ public class ScoreCard {
      * @param sortedHand is the current hand being passed in to be scored
      * @return int[] where the array is full of the upper Section's scores
      */
-    public static int[] getUpperScores(Die[] sortedHand) {
-        int oneTotal = 0, twoTotal = 0, threeTotal = 0, fourTotal = 0, fiveTotal = 0 ,sixTotal = 0;
+    public static ArrayList<Integer> getUpperScores(Die[] sortedHand) {
+        //int oneTotal = 0, twoTotal = 0, threeTotal = 0, fourTotal = 0, fiveTotal = 0 ,sixTotal = 0;
+        ArrayList<Integer> faceTotals = new ArrayList<Integer>();
 
         //Loop for upper section scores:
-        for (int i = 0; i < sortedHand.length; i++) {
-            if(sortedHand[i].getFace() == 1) {
-                oneTotal += 1;
-            } else if(sortedHand[i].getFace() == 2) {
-                twoTotal += 2;
-            } else if(sortedHand[i].getFace() == 3) {
-                threeTotal += 3;
-            } else if(sortedHand[i].getFace() == 4) {
-                fourTotal += 4;
-            } else if(sortedHand[i].getFace() == 5) {
-                fiveTotal += 5;
-            } else if(sortedHand[i].getFace() == 6) {
-                sixTotal += 6;
+        for (int i = 0; i < sortedHand.length; i++) { //Where i is the current die face
+            for (int y = 1; y < Die.getNumFaces(); y++) { //Where y is the value the face is being compared to
+                if (sortedHand[i].getFace() == y) {
+                    faceTotals.set(i, ++y);
+                }
             }
         }
-
-        int[] upperScores = {oneTotal, twoTotal, threeTotal, fourTotal, fiveTotal, sixTotal};
-
-        return upperScores;
+        return faceTotals;
     }
 
     /**
@@ -62,17 +53,23 @@ public class ScoreCard {
      * @param upperScores are the calculated scores from the getUpperScores method
      * @return int[] lowerScores where lowerScores is the total points for each catagory on the lower score section
      */
-    public static int[] getLowerScores(Die[] sortedHand, int[] upperScores) {
-        int threeOfKind = 0, fourOfKind = 0, fullHouse = 0, smStraight = 0, lgStraight = 0, yahtzee = 0, chance = IntStream.of(upperScores).sum();
+    public static ArrayList<Integer> getLowerScores (Die[] sortedHand, ArrayList<Integer> upperScores) {
+        int threeOfKind = 0, fourOfKind = 0, fullHouse = 0, smStraight = 0, lgStraight = 0, yahtzee = 0, chance = 0;
+        int sumOfHand = 0;
         int [] diceFrequency = getDiceFrequency(sortedHand);
+
+        for(int i = 0; i < upperScores.size(); ++i) {
+            sumOfHand = sumOfHand + sortedHand[i].getFace();
+        } chance = sumOfHand;
 
         //Loop for yahtzee, 3 of a kind, or 4 of a kind
         for (int i = 0; i < sortedHand.length; i++) {
             if (diceFrequency[i] == 3) {
-                threeOfKind = IntStream.of(upperScores).sum();
+                threeOfKind = sumOfHand;
+
             }
             if (diceFrequency[i] == 4) {
-                fourOfKind = IntStream.of(upperScores).sum();
+                fourOfKind = sumOfHand;
             }
             if (diceFrequency[i] == 5) {
                 yahtzee = 100; //100 because a yahtzee is worth 100 points
@@ -87,11 +84,11 @@ public class ScoreCard {
                 (sortedHand[2].getFace() == sortedHand[3].getFace() - 1) &&
                 (sortedHand[3].getFace() == sortedHand[4].getFace() - 1)) {
             lgStraight = 40;
-        } else if ((upperScores[0] > 0) && (upperScores[1] > 0) && (upperScores[2] > 0) && (upperScores[3] > 0)) {
+        } else if ((upperScores.get(0) > 0) && (upperScores.get(1) > 0) && (upperScores.get(2) > 0) && (upperScores.get(3) > 0)) {
             smStraight = 30;
-        }  else if ((upperScores[1] > 0) && (upperScores[2] > 0) && (upperScores[3] > 0) && (upperScores[4] > 0)) {
+        }  else if ((upperScores.get(1) > 0) && (upperScores.get(2) > 0) && (upperScores.get(3) > 0) && (upperScores.get(4) > 0)) {
             smStraight = 30;
-        } else if ((upperScores[2] > 0) && (upperScores[3] > 0) && (upperScores[4] > 0) && (upperScores[5] > 0)) {
+        } else if ((upperScores.get(2) > 0) && (upperScores.get(3) > 0) && (upperScores.get(4) > 0) && (upperScores.get(5) > 0)) {
             smStraight = 30;
         }
 
@@ -103,7 +100,14 @@ public class ScoreCard {
             fullHouse = 25;
         }
 
-        int[] lowerScores = {threeOfKind, fourOfKind, fullHouse, smStraight, lgStraight, yahtzee, chance};
+        ArrayList<Integer> lowerScores = new ArrayList<Integer>();
+        lowerScores.add(threeOfKind);
+        lowerScores.add(fourOfKind);
+        lowerScores.add(fullHouse);
+        lowerScores.add(smStraight);
+        lowerScores.add(lgStraight);
+        lowerScores.add(yahtzee);
+        lowerScores.add(chance);
 
         return lowerScores;
     }
@@ -137,15 +141,15 @@ public class ScoreCard {
      * @param upperScores should be int[] from getUpperScores
      * @param lowerScores should be int[] from getLowerScores
      */
-    public static void displayScoreCard(int[] upperScores, int[] lowerScores) {
+    public static void displayScoreCard(ArrayList<Integer> upperScores, ArrayList<Integer> lowerScores) {
         String[] lowerSectionNames = {"Three of a Kind", "Four of a Kind", "Full House", "Small Straight", "Large Straight", "Yahtzee", "Chance"};
         //Loop to display upper section:
         for (int i = 0; i < Die.getNumFaces(); i++) {
-            System.out.println("Scored " + upperScores[i] + " on the " + (i + 1) + " row.");
+            System.out.println("Scored " + upperScores.get(i) + " on the " + (i + 1) + " row.");
         }
         //Loop to display lower section:
         for (int i = 0; i < 7; i++) { //7 because that is the number of rows in lower section
-            System.out.println("Scored " + lowerScores[i] + " on the " + lowerSectionNames[i] + " row.");
+            System.out.println("Scored " + lowerScores.get(i) + " on the " + lowerSectionNames[i] + " row.");
         }
     }
 }
