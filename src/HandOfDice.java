@@ -18,6 +18,7 @@ public class HandOfDice {
     /**
      * Uses and returns currHand to play three turns/rolls, aka a "hand". Sorts the hand before returning it
      */
+
     public static Die[] playHand (Die[] currHand) {
         for (int i = 0; i < numTurns; i++) {
             displayHand(currHand);
@@ -66,7 +67,7 @@ public class HandOfDice {
             userSelection = tempObj.nextLine();
             userSelection = userSelection.replaceAll("\\s", ""); //removes spaces/white space
 
-        //if user doesnt enter in all characters it re prompts them
+        //if user doesn't enter in all characters it re-prompts them
         if (userSelection.length() < numDice) {
             System.out.println("Please enter " + numDice + " characters");
         } else{
