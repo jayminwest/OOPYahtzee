@@ -13,6 +13,9 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ScoreCard {
+    public static void main(String[] args) {
+
+    }
     /**
      * Takes sorted hand from result of HandOfDice and totals up scores
      *
@@ -32,14 +35,17 @@ public class ScoreCard {
      * @return int[] where the array is full of the upper Section's scores
      */
     public static ArrayList<Integer> getUpperScores(Die[] sortedHand) {
-        //int oneTotal = 0, twoTotal = 0, threeTotal = 0, fourTotal = 0, fiveTotal = 0 ,sixTotal = 0;
         ArrayList<Integer> faceTotals = new ArrayList<Integer>();
 
         //Loop for upper section scores:
         for (int i = 0; i < sortedHand.length; i++) { //Where i is the current die face
-            for (int y = 1; y < Die.getNumFaces(); y++) { //Where y is the value the face is being compared to
+            System.out.println("index in first loop = " + i);
+            //System.out.println("Current Face is: " + sortedHand[i].getFace());
+            for (int y = 1; y <= Die.getNumFaces(); y++) { //Where y is the value the face is being compared to
+                System.out.println("y = " + y + " i = " + i);
                 if (sortedHand[i].getFace() == y) {
-                    faceTotals.set(i, ++y);
+                    System.out.println("Face was a " + y);
+                    //faceTotals.set(i, ++y);
                 }
             }
         }
