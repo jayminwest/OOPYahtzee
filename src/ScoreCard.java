@@ -23,9 +23,9 @@ public class ScoreCard {
      */
     public static void processSortedHand(Die[] sortedHand) {
         ArrayList<Integer> upperScores = getUpperScores(sortedHand);
-        ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
+        //ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
 
-        displayScoreCard(upperScores, lowerScores);
+        //displayScoreCard(upperScores, lowerScores);
     }
 
     /**
@@ -36,6 +36,9 @@ public class ScoreCard {
      */
     public static ArrayList<Integer> getUpperScores(Die[] sortedHand) {
         ArrayList<Integer> faceTotals = new ArrayList<Integer>();
+
+        System.out.println("Sorted Hand Length: " + sortedHand.length);
+        System.out.println("numFaces: " + Die.getNumFaces());
 
         //Loop for upper section scores:
         for (int i = 0; i < sortedHand.length; i++) { //Where i is the current die face
