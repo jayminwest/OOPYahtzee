@@ -23,6 +23,8 @@ public class ScoreCard {
      */
     public static void processSortedHand(Die[] sortedHand) {
         ArrayList<Integer> upperScores = getUpperScores(sortedHand);
+
+        //lowerScores is the problem with the program, not upperScores
         //ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
 
         //displayScoreCard(upperScores, lowerScores);
