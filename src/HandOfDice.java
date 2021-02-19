@@ -12,15 +12,15 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class HandOfDice {
-    private static int numDice = 5; //Must change this so value comes from Settings class
-    private static int numTurns = 3; //Must change this so value comes from Settings class
+    private static int numDice = Settings.getNumDice(); //Must change this so value comes from Settings class
+    private static int numRolls = Settings.getNumRolls(); //Must change this so value comes from Settings class
 
     /**
      * Uses and returns currHand to play three turns/rolls, aka a "hand". Sorts the hand before returning it
      */
 
     public static Die[] playHand (Die[] currHand) {
-        for (int i = 0; i < numTurns; i++) {
+        for (int i = 0; i < numRolls; i++) {
             displayHand(currHand);
 
             String userSelection = getUserSelection();
@@ -103,16 +103,16 @@ public class HandOfDice {
 
     /**
      * Getters:
-     * @return numDice and numTurns respectively
+     * @return numDice and numRolls respectively
      */
     public static int getNumDice() {return numDice;}
-    public static int getNumTurns() {return numTurns;}
+    public static int getNumTurns() {return numRolls;}
 
     /**
      * Setters
      * @param numDiceParam and numTurnsParam respectively
      */
     public static void setNumDice(int numDiceParam) {numDice = numDiceParam;}
-    public static void setNumTurns(int numTurnsParam) {numTurns = numTurnsParam;}
+    public static void setNumTurns(int numTurnsParam) {numRolls = numTurnsParam;}
 
 }

@@ -6,24 +6,14 @@ import java.util.Scanner;
 
 /**
  * Settings class:
- *  Elements
- *      numDice
- *      numRolls
- *      numFaces
- *      inFile
- * Methods
- *      readFile()
- *      changeFile() //based on user
- *      displaySettings()
- *      getUserSettings()
- *      Getters and setters
+ *  TODO: fix writing to file,
  *
  * @author Jaymin West
  */
 public class Settings {
-    private static int numSides = 0;
-    private static int numDice = 0;
-    private static int numRolls = 0;
+    private static int numSides = 6; //Default value
+    private static int numDice = 5; //Default value
+    private static int numRolls = 3; //Default value
     private static String fileName = "yahtzeeConfig.txt";
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -51,6 +41,9 @@ public class Settings {
         }
     }
 
+    /**
+     * Displays the current settings in the console
+     */
     public static void displaySettings() {
         Scanner tempObj = new Scanner(System.in);
 
@@ -68,6 +61,11 @@ public class Settings {
         }
     }
 
+    /**
+     * changeSettings takes user input and changes the settings file based on that
+     *
+     * Currently BROKEN
+     */
     public static void changeSettings() {
         Scanner tempObj = new Scanner(System.in);
         String userNumSides = "";
@@ -103,5 +101,29 @@ public class Settings {
     public static String removeWhiteSpace(String tempString) {
         tempString = tempString.replaceAll("//s", "");
         return tempString;
+    }
+
+    public static int getNumDice() {
+        return numDice;
+    }
+
+    public static int getNumRolls() {
+        return numRolls;
+    }
+
+    public static int getNumSides() {
+        return numSides;
+    }
+
+    public static void setNumDice(int numDice) {
+        Settings.numDice = numDice;
+    }
+
+    public static void setNumRolls(int numRolls) {
+        Settings.numRolls = numRolls;
+    }
+
+    public static void setNumSides(int numSides) {
+        Settings.numSides = numSides;
     }
 }

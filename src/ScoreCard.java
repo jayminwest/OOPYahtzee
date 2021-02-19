@@ -3,6 +3,8 @@
  * and Display the user's score. The scorecard is split into upper and lower sections and this is refleted in the methods
  * used.
  *
+ * TODO: fix index error in lowerScores, fix faceTotals in upperScores, change getDiceFrequency,
+ *
  * @author Jaymin West
  */
 
@@ -37,23 +39,27 @@ public class ScoreCard {
      * @return int[] where the array is full of the upper Section's scores
      */
     public static ArrayList<Integer> getUpperScores(Die[] sortedHand) {
-        ArrayList<Integer> faceTotals = new ArrayList<Integer>();
+        ArrayList<Integer> faceTotals = new ArrayList<Integer>(Die.getNumFaces());
+        ArrayList<Integer> possibleFaces = new ArrayList<Integer>(Die.getNumFaces());
 
-        System.out.println("Sorted Hand Length: " + sortedHand.length);
-        System.out.println("numFaces: " + Die.getNumFaces());
+        for (int i = 0; i < sortedHand.length; ++i) {
+            faceTotals.add(i, 0);
+            possibleFaces.add(i, i + 1);
+        }
 
         //Loop for upper section scores:
         for (int i = 0; i < sortedHand.length; i++) { //Where i is the current die face
-            System.out.println("index in first loop = " + i);
-            //System.out.println("Current Face is: " + sortedHand[i].getFace());
-            for (int y = 1; y <= Die.getNumFaces(); y++) { //Where y is the value the face is being compared to
-                System.out.println("y = " + y + " i = " + i);
+            for (int y = 1; y < Die.getNumFaces(); y++) { //Where y is the value the face is being compared to
                 if (sortedHand[i].getFace() == y) {
-                    System.out.println("Face was a " + y);
-                    //faceTotals.set(i, ++y);
+                    faceTotals.set(i, (faceTotals.get(i) + possibleFaces.get(i)));
                 }
             }
         }
+
+        for (int i = 0; i < sortedHand.length; ++i) {
+            System.out.println(faceTotals.get(i));
+        }
+
         return faceTotals;
     }
 
@@ -103,7 +109,6 @@ public class ScoreCard {
             smStraight = 30;
         }
 
-        //Need to add fullHouse
         if ((diceFrequency[0] == 3 || diceFrequency[1] == 3 || diceFrequency[2] == 3 ||  //Checking for three of a kind
                 diceFrequency[3] == 3 || diceFrequency[4] == 3 || diceFrequency[5] == 3) && //Three of a kind
                 (diceFrequency[0] == 2 || diceFrequency[1] == 2 || diceFrequency[2] == 2 || //Checking for two of a kind
