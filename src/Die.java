@@ -33,7 +33,7 @@ public class Die {
        face = newFace;
     }
 
-    public void setNumFaces(int numFaces) { numFaces = numFaces;}
+    public void setNumSides(int numSides) { numSides = numSides;}
 
     @Override
     public String toString() {

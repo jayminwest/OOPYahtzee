@@ -40,24 +40,33 @@ public class ScoreCard {
      */
     public static ArrayList<Integer> getUpperScores(Die[] sortedHand) {
         ArrayList<Integer> faceTotals = new ArrayList<Integer>(Die.getNumFaces());
-        ArrayList<Integer> possibleFaces = new ArrayList<Integer>(Die.getNumFaces());
 
-        for (int i = 0; i < sortedHand.length; ++i) {
+        for (int i = 0; i < Die.getNumFaces(); ++i) {
             faceTotals.add(i, 0);
-            possibleFaces.add(i, i + 1);
         }
 
-        //Loop for upper section scores:
-        for (int i = 0; i < sortedHand.length; i++) { //Where i is the current die face
-            for (int y = 1; y < Die.getNumFaces(); y++) { //Where y is the value the face is being compared to
-                if (sortedHand[i].getFace() == y) {
-                    faceTotals.set(i, (faceTotals.get(i) + possibleFaces.get(i)));
+        System.out.println(Die.getNumFaces());
+
+        for (int i = 0; i < Die.getNumFaces(); ++i) {
+            for (int y = 0; y < Die.getNumFaces(); ++y) {
+                if (sortedHand[y].getFace() == i) {
+                    faceTotals.set(i, (faceTotals.get(i) + i));
                 }
+                System.out.println("Loop total of " + i + ": " + faceTotals.get(i));
             }
         }
 
+        /*Loop for upper section scores:
+        for (int i = 0; i < sortedHand.length; ++i) { //Where i is the current die face
+            for (int y = 1; y < Die.getNumFaces(); ++y) { //Where y is the value the face is being compared to
+                if (sortedHand[i].getFace() == y) {
+                    faceTotals.set(i, (faceTotals.get(i) + y));
+                }
+            }
+        }
+           */
         for (int i = 0; i < sortedHand.length; ++i) {
-            System.out.println(faceTotals.get(i));
+            System.out.println("Final total of " + i + ": " + faceTotals.get(i));
         }
 
         return faceTotals;
