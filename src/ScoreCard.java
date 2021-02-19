@@ -39,6 +39,8 @@ public class ScoreCard {
      * @return int[] where the array is full of the upper Section's scores
      */
     public static ArrayList<Integer> getUpperScores(Die[] sortedHand) {
+        int numFaces = Settings.getNumSides();
+        int numDice = Settings.getNumDice();
         ArrayList<Integer> faceTotals = new ArrayList<Integer>(Die.getNumFaces());
 
         for (int i = 0; i < Die.getNumFaces(); ++i) {
@@ -47,13 +49,20 @@ public class ScoreCard {
 
         System.out.println(Die.getNumFaces());
 
-        for (int i = 0; i < Die.getNumFaces(); ++i) {
-            for (int y = 0; y < Die.getNumFaces(); ++y) {
-                if (sortedHand[y].getFace() == i) {
-                    faceTotals.set(i, (faceTotals.get(i) + i));
+        //change i name to be more specific/about row
+            //start @ row one
+            //Go up to max numFaces, <=
+            //Make a row object for each!
+        for (int scoreRow = 1; scoreRow < numFaces + 1; ++scoreRow) {
+            int scoreRowTotal = 0;
+            for (int y = 0; y < numDice; ++y) { //change to numDice, not numfaces
+                if (sortedHand[y].getFace() == scoreRow) {
+                    //faceTotals.set(scoreRow, (faceTotals.get(scoreRow) + scoreRow));
+                    scoreRowTotal += scoreRow;
                 }
-                System.out.println("Loop total of " + i + ": " + faceTotals.get(i));
+                //System.out.println("Loop total of " + i + ": " + faceTotals.get(i));
             }
+            faceTotals.set(scoreRow, scoreRowTotal);
         }
 
         /*Loop for upper section scores:
