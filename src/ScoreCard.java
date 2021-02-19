@@ -3,7 +3,8 @@
  * and Display the user's score. The scorecard is split into upper and lower sections and this is refleted in the methods
  * used.
  *
- * TODO: fix index error in lowerScores, fix faceTotals in upperScores, change getDiceFrequency,
+ * TODO: fix index error in lowerScores, change getDiceFrequency,
+ * TODO: Objects to make: Rows, ScoreRows, change Die[] to object, UpperSection, LowerSection (both should inheret from ScoreCard)
  *
  * @author Jaymin West
  */
@@ -27,7 +28,7 @@ public class ScoreCard {
         ArrayList<Integer> upperScores = getUpperScores(sortedHand);
 
         //lowerScores is the problem with the program, not upperScores
-        //ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
+       // ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
 
         //displayScoreCard(upperScores, lowerScores);
     }
@@ -41,41 +42,27 @@ public class ScoreCard {
     public static ArrayList<Integer> getUpperScores(Die[] sortedHand) {
         int numFaces = Settings.getNumSides();
         int numDice = Settings.getNumDice();
-        ArrayList<Integer> faceTotals = new ArrayList<Integer>(Die.getNumFaces());
+        ArrayList<Integer> faceTotals = new ArrayList<Integer>(numFaces);
 
-        for (int i = 0; i < Die.getNumFaces(); ++i) {
+        for (int i = 0; i < numFaces + 1; ++i) {
             faceTotals.add(i, 0);
         }
 
-        System.out.println(Die.getNumFaces());
-
-        //change i name to be more specific/about row
             //start @ row one
             //Go up to max numFaces, <=
             //Make a row object for each!
         for (int scoreRow = 1; scoreRow < numFaces + 1; ++scoreRow) {
             int scoreRowTotal = 0;
-            for (int y = 0; y < numDice; ++y) { //change to numDice, not numfaces
+            for (int y = 0; y < numDice; ++y) {
                 if (sortedHand[y].getFace() == scoreRow) {
-                    //faceTotals.set(scoreRow, (faceTotals.get(scoreRow) + scoreRow));
                     scoreRowTotal += scoreRow;
                 }
-                //System.out.println("Loop total of " + i + ": " + faceTotals.get(i));
             }
             faceTotals.set(scoreRow, scoreRowTotal);
         }
 
-        /*Loop for upper section scores:
-        for (int i = 0; i < sortedHand.length; ++i) { //Where i is the current die face
-            for (int y = 1; y < Die.getNumFaces(); ++y) { //Where y is the value the face is being compared to
-                if (sortedHand[i].getFace() == y) {
-                    faceTotals.set(i, (faceTotals.get(i) + y));
-                }
-            }
-        }
-           */
-        for (int i = 0; i < sortedHand.length; ++i) {
-            System.out.println("Final total of " + i + ": " + faceTotals.get(i));
+        for (int scoreRow = 1; scoreRow < numFaces + 1; ++scoreRow) {
+            System.out.println("Final total of " + scoreRow + ": " + faceTotals.get(scoreRow));
         }
 
         return faceTotals;
