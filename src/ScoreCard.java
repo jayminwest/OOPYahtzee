@@ -3,7 +3,7 @@
  * and Display the user's score. The scorecard is split into upper and lower sections and this is refleted in the methods
  * used.
  *
- * TODO: fix index error in lowerScores, change getDiceFrequency,
+ * TODO: change getDiceFrequency,
  * TODO: Objects to make: Rows, ScoreRows, change Die[] to object, UpperSection, LowerSection (both should inheret from ScoreCard)
  *
  * @author Jaymin West
@@ -27,10 +27,9 @@ public class ScoreCard {
     public static void processSortedHand(Die[] sortedHand) {
         ArrayList<Integer> upperScores = getUpperScores(sortedHand);
 
-        //lowerScores is the problem with the program, not upperScores
-       // ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
+        ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
 
-        //displayScoreCard(upperScores, lowerScores);
+        displayScoreCard(upperScores, lowerScores);
     }
 
     /**
@@ -61,10 +60,6 @@ public class ScoreCard {
             faceTotals.set(scoreRow, scoreRowTotal);
         }
 
-        for (int scoreRow = 1; scoreRow < numFaces + 1; ++scoreRow) {
-            System.out.println("Final total of " + scoreRow + ": " + faceTotals.get(scoreRow));
-        }
-
         return faceTotals;
     }
 
@@ -78,22 +73,25 @@ public class ScoreCard {
     public static ArrayList<Integer> getLowerScores (Die[] sortedHand, ArrayList<Integer> upperScores) {
         int threeOfKind = 0, fourOfKind = 0, fullHouse = 0, smStraight = 0, lgStraight = 0, yahtzee = 0, chance = 0;
         int sumOfHand = 0;
-        int [] diceFrequency = getDiceFrequency(sortedHand);
+        int numDice = Settings.getNumDice();
+        int numFaces = Settings.getNumSides();
+        int numRolls = Settings.getNumRolls();
+        ArrayList<Integer> diceFrequency = getDiceFrequency(sortedHand);
 
-        for(int i = 0; i < upperScores.size(); ++i) {
+        for(int i = 0; i < sortedHand.length; ++i) {
             sumOfHand = sumOfHand + sortedHand[i].getFace();
         } chance = sumOfHand;
 
         //Loop for yahtzee, 3 of a kind, or 4 of a kind
         for (int i = 0; i < sortedHand.length; i++) {
-            if (diceFrequency[i] == 3) {
+            if (diceFrequency.get(i) == 3) {
                 threeOfKind = sumOfHand;
 
             }
-            if (diceFrequency[i] == 4) {
+            if (diceFrequency.get(i) == 4) {
                 fourOfKind = sumOfHand;
             }
-            if (diceFrequency[i] == 5) {
+            if (diceFrequency.get(i) == numDice) {
                 yahtzee = 100; //100 because a yahtzee is worth 100 points
             }
 
@@ -114,12 +112,14 @@ public class ScoreCard {
             smStraight = 30;
         }
 
-        if ((diceFrequency[0] == 3 || diceFrequency[1] == 3 || diceFrequency[2] == 3 ||  //Checking for three of a kind
-                diceFrequency[3] == 3 || diceFrequency[4] == 3 || diceFrequency[5] == 3) && //Three of a kind
-                (diceFrequency[0] == 2 || diceFrequency[1] == 2 || diceFrequency[2] == 2 || //Checking for two of a kind
-                        diceFrequency[3] == 2 || diceFrequency[4] == 2 || diceFrequency[5] == 2)) { //Two of a kind
+
+        if ((diceFrequency.get(0) == 3 || diceFrequency.get(1) == 3 || diceFrequency.get(2) == 3 ||  //Checking for three of a kind
+                diceFrequency.get(3) == 3 || diceFrequency.get(4) == 3 || diceFrequency.get(5) == 3) && //Three of a kind
+                (diceFrequency.get(0) == 2 || diceFrequency.get(1) == 2 || diceFrequency.get(2) == 2 || //Checking for two of a kind
+                        diceFrequency.get(3) == 2 || diceFrequency.get(4) == 2 || diceFrequency.get(5) == 2)) { //Two of a kind
             fullHouse = 25;
         }
+
 
         ArrayList<Integer> lowerScores = new ArrayList<Integer>();
         lowerScores.add(threeOfKind);
@@ -134,24 +134,30 @@ public class ScoreCard {
     }
 
     /**
-     * Counts the frequency of each face in a given hand. Currently can only process six faces, which is a flaw
+     * Counts the frequency of each face in a given hand
      *
      * @param currHand is the HandOfDice being used to find frequency
      * @return int[] diceFrequency is the indexed array full of each face's frequency
      */
-    public static int[] getDiceFrequency(Die[] currHand) {
-        int [] diceFrequency = {0, 0, 0, 0, 0, 0}; //all faces' frequencies set to 0
+    public static ArrayList<Integer> getDiceFrequency(Die[] currHand) {
+        int numFaces = Settings.getNumSides();
+        int numDice = Settings.getNumDice();
+        ArrayList<Integer> diceFrequency = new ArrayList<>(numFaces);
 
-        for (int i = 0; i < currHand.length; i++) { //must change this loop so it can be played with different settings
-            if (currHand[i].getFace() == 1) diceFrequency[0]++;
-            if (currHand[i].getFace() == 2) diceFrequency[1]++;
-            if (currHand[i].getFace() == 3) diceFrequency[2]++;
-            if (currHand[i].getFace() == 4) diceFrequency[3]++;
-            if (currHand[i].getFace() == 5) diceFrequency[4]++;
-            if (currHand[i].getFace() == 6) diceFrequency[5]++;
+        //Sets all the values of diceFrequency to 0
+        for (int i = 0; i < numFaces; ++i) {
+            diceFrequency.add(i, 0);
         }
 
-        //System.out.println("Frequency: " + Arrays.toString(diceFrequency)); //Testing purposes
+        for (int currDice = 0; currDice < currHand.length; ++currDice) {
+            int currDiceFrequency = 0;
+            for (int currFace = 0; currFace < numFaces; ++currFace) {
+               if (currHand[currDice].getFace() == currFace) {
+                   currDiceFrequency += 1;
+               }
+            }
+           diceFrequency.set(currDice, currDiceFrequency);
+        }
 
         return diceFrequency;
     }
@@ -165,8 +171,8 @@ public class ScoreCard {
     public static void displayScoreCard(ArrayList<Integer> upperScores, ArrayList<Integer> lowerScores) {
         String[] lowerSectionNames = {"Three of a Kind", "Four of a Kind", "Full House", "Small Straight", "Large Straight", "Yahtzee", "Chance"};
         //Loop to display upper section:
-        for (int i = 0; i < Die.getNumFaces(); i++) {
-            System.out.println("Scored " + upperScores.get(i) + " on the " + (i + 1) + " row.");
+        for (int i = 1; i <= Die.getNumFaces(); i++) {
+            System.out.println("Scored " + upperScores.get(i) + " on the " + (i) + " row.");
         }
         //Loop to display lower section:
         for (int i = 0; i < 7; i++) { //7 because that is the number of rows in lower section

@@ -69,7 +69,7 @@ public class HandOfDice {
          *             userSelection = userSelection.replaceAll("\\s", ""); //removes spaces/white space
          */
 
-        String userSelection = "yyyyy"; //*********REMOVE WHEN NOT TESTING************
+        String userSelection = "yyyyyyyy"; //*********REMOVE WHEN NOT TESTING************
 
         //if user doesn't enter in all characters it re-prompts them
         if (userSelection.length() < numDice) {

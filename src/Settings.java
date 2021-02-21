@@ -11,9 +11,9 @@ import java.util.Scanner;
  * @author Jaymin West
  */
 public class Settings {
-    private static int numSides = 6; //Default value
-    private static int numDice = 5; //Default value
-    private static int numRolls = 3; //Default value
+    private static int numSides = 8; //Default value
+    private static int numDice = 8; //Default value
+    private static int numRolls = 4; //Default value
     private static String fileName = "yahtzeeConfig.txt";
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -22,7 +22,8 @@ public class Settings {
     }
 
     /**
-     * readFile does as the title suggests. It reads from the specified settings file and applys the values to the numSides, numDice, and numRolls variables.
+     * readFile does as the title suggests. It reads from the specified settings file and applies
+     * the values to the numSides, numDice, and numRolls variables.
      *
      * @throws FileNotFoundException
      */
