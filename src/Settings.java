@@ -1,7 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 /**
@@ -11,12 +9,16 @@ import java.util.Scanner;
  * @author Jaymin West
  */
 public class Settings {
-    private static int numSides = 8; //Default value
-    private static int numDice = 8; //Default value
-    private static int numRolls = 4; //Default value
+    private static int numSides = 6; //Default value
+    private static int numDice = 5; //Default value
+    private static int numRolls = 3; //Default value
     private static String fileName = "yahtzeeConfig.txt";
 
     public static void main(String[] args) throws FileNotFoundException {
+        runSettings();
+    }
+
+    public static void runSettings() throws FileNotFoundException {
         readFile();
         displaySettings();
     }
@@ -81,14 +83,16 @@ public class Settings {
             userNumRolls = removeWhiteSpace(tempObj.nextLine());
 
         try {
-            String filePath = System.getProperty("user.dir");
-            FileWriter settingsFileWriter = new FileWriter (filePath + "/src" + "/yahtzeeConfig.txt");
+           String filePath = System.getProperty("user.dir") + "/src" + "/yahtzeeConfig.txt";
+           FileWriter settingsFileWriter = new FileWriter (filePath);
 
             settingsFileWriter.write(userNumSides);
-            settingsFileWriter.write(userNumDice);
-            settingsFileWriter.write(userNumRolls);
+            settingsFileWriter.write("\n" + userNumDice);
+            settingsFileWriter.write("\n" + userNumRolls);
 
-            displaySettings();
+            settingsFileWriter.close();
+
+            runSettings();
         } catch (IOException fileWriteError){
             System.out.println("Error in changing settings file");
         }

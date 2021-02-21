@@ -3,7 +3,6 @@
  * and Display the user's score. The scorecard is split into upper and lower sections and this is refleted in the methods
  * used.
  *
- * TODO: change getDiceFrequency,
  * TODO: Objects to make: Rows, ScoreRows, change Die[] to object, UpperSection, LowerSection (both should inheret from ScoreCard)
  *
  * @author Jaymin West
@@ -74,8 +73,7 @@ public class ScoreCard {
         int threeOfKind = 0, fourOfKind = 0, fullHouse = 0, smStraight = 0, lgStraight = 0, yahtzee = 0, chance = 0;
         int sumOfHand = 0;
         int numDice = Settings.getNumDice();
-        int numFaces = Settings.getNumSides();
-        int numRolls = Settings.getNumRolls();
+        int numSides = Settings.getNumSides();
         ArrayList<Integer> diceFrequency = getDiceFrequency(sortedHand);
 
         for(int i = 0; i < sortedHand.length; ++i) {
@@ -83,10 +81,10 @@ public class ScoreCard {
         } chance = sumOfHand;
 
         //Loop for yahtzee, 3 of a kind, or 4 of a kind
-        for (int i = 0; i < sortedHand.length; i++) {
+        for (int i = 1; i <= numSides; i++) {
+                   // diceFrequency.get(i);
             if (diceFrequency.get(i) == 3) {
                 threeOfKind = sumOfHand;
-
             }
             if (diceFrequency.get(i) == 4) {
                 fourOfKind = sumOfHand;
@@ -99,27 +97,30 @@ public class ScoreCard {
 
         //If statements for large straight and small straight
         //This should be changed for HW2 so it is not limited to 1-6 combos
-        if ((sortedHand[0].getFace() == sortedHand[1].getFace() - 1) &&
-                (sortedHand[1].getFace() == sortedHand[2].getFace() - 1) &&
-                (sortedHand[2].getFace() == sortedHand[3].getFace() - 1) &&
-                (sortedHand[3].getFace() == sortedHand[4].getFace() - 1)) {
-            lgStraight = 40;
-        } else if ((upperScores.get(0) > 0) && (upperScores.get(1) > 0) && (upperScores.get(2) > 0) && (upperScores.get(3) > 0)) {
-            smStraight = 30;
-        }  else if ((upperScores.get(1) > 0) && (upperScores.get(2) > 0) && (upperScores.get(3) > 0) && (upperScores.get(4) > 0)) {
-            smStraight = 30;
-        } else if ((upperScores.get(2) > 0) && (upperScores.get(3) > 0) && (upperScores.get(4) > 0) && (upperScores.get(5) > 0)) {
-            smStraight = 30;
+        if(numDice >= 5 && numSides >= 4) { //5 and 4 beacuse there needs to be at least 5 dice and 4 number of sides for a straight to exist
+            if ((sortedHand[0].getFace() == sortedHand[1].getFace() - 1) &&
+                    (sortedHand[1].getFace() == sortedHand[2].getFace() - 1) &&
+                    (sortedHand[2].getFace() == sortedHand[3].getFace() - 1) &&
+                    (sortedHand[3].getFace() == sortedHand[4].getFace() - 1)) {
+                lgStraight = 40;
+            } else if ((upperScores.get(0) > 0) && (upperScores.get(1) > 0) && (upperScores.get(2) > 0) && (upperScores.get(3) > 0)) {
+                smStraight = 30;
+            } else if ((upperScores.get(1) > 0) && (upperScores.get(2) > 0) && (upperScores.get(3) > 0) && (upperScores.get(4) > 0)) {
+                smStraight = 30;
+            } else if ((upperScores.get(2) > 0) && (upperScores.get(3) > 0) && (upperScores.get(4) > 0) && (upperScores.get(5) > 0)) {
+                smStraight = 30;
+            }
         }
 
-
-        if ((diceFrequency.get(0) == 3 || diceFrequency.get(1) == 3 || diceFrequency.get(2) == 3 ||  //Checking for three of a kind
-                diceFrequency.get(3) == 3 || diceFrequency.get(4) == 3 || diceFrequency.get(5) == 3) && //Three of a kind
-                (diceFrequency.get(0) == 2 || diceFrequency.get(1) == 2 || diceFrequency.get(2) == 2 || //Checking for two of a kind
-                        diceFrequency.get(3) == 2 || diceFrequency.get(4) == 2 || diceFrequency.get(5) == 2)) { //Two of a kind
-            fullHouse = 25;
+        //Full House Loop:
+        if(numDice >= 5 && numSides >= 4) { //This being set to four stops the program from breaking. Will be changed for HW3
+            if ((diceFrequency.get(0) == 3 || diceFrequency.get(1) == 3 || diceFrequency.get(2) == 3 ||  //Checking for three of a kind
+                    diceFrequency.get(3) == 3 || diceFrequency.get(4) == 3 || diceFrequency.get(5) == 3) && //Three of a kind
+                    (diceFrequency.get(0) == 2 || diceFrequency.get(1) == 2 || diceFrequency.get(2) == 2 || //Checking for two of a kind
+                            diceFrequency.get(3) == 2 || diceFrequency.get(4) == 2 || diceFrequency.get(5) == 2)) { //Two of a kind
+                fullHouse = 25;
+            }
         }
-
 
         ArrayList<Integer> lowerScores = new ArrayList<Integer>();
         lowerScores.add(threeOfKind);
@@ -142,23 +143,20 @@ public class ScoreCard {
     public static ArrayList<Integer> getDiceFrequency(Die[] currHand) {
         int numFaces = Settings.getNumSides();
         int numDice = Settings.getNumDice();
-        ArrayList<Integer> diceFrequency = new ArrayList<>(numFaces);
+        ArrayList<Integer> diceFrequency = new ArrayList<>(numFaces + 1);
 
         //Sets all the values of diceFrequency to 0
-        for (int i = 0; i < numFaces; ++i) {
+        for (int i = 0; i <= numFaces; ++i) {
             diceFrequency.add(i, 0);
         }
 
         for (int currDice = 0; currDice < currHand.length; ++currDice) {
-            int currDiceFrequency = 0;
-            for (int currFace = 0; currFace < numFaces; ++currFace) {
+            for (int currFace = 1; currFace <= numFaces; ++currFace) {
                if (currHand[currDice].getFace() == currFace) {
-                   currDiceFrequency += 1;
+                   diceFrequency.set(currFace, (diceFrequency.get(currFace) + 1));
                }
             }
-           diceFrequency.set(currDice, currDiceFrequency);
         }
-
         return diceFrequency;
     }
 

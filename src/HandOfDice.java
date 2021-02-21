@@ -63,13 +63,12 @@ public class HandOfDice {
 
         System.out.println("Enter dice to keep (y or n): ");
 
-        /** UNCOMMENT WHEN TURNING IN, COMMENTED SO DO NOT NEED TO INPUT EVERY TIME
-         * String userSelection = "";
-         *             userSelection = tempObj.nextLine();
-         *             userSelection = userSelection.replaceAll("\\s", ""); //removes spaces/white space
-         */
+         String userSelection = "";
+                     userSelection = tempObj.nextLine();
+                     userSelection = userSelection.replaceAll("\\s", ""); //removes spaces/white space
 
-        String userSelection = "yyyyyyyy"; //*********REMOVE WHEN NOT TESTING************
+
+        //String userSelection = "yyyyyyyy"; //*********REMOVE WHEN NOT TESTING************
 
         //if user doesn't enter in all characters it re-prompts them
         if (userSelection.length() < numDice) {

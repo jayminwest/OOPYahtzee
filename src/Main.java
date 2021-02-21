@@ -10,12 +10,15 @@
  *@author Jaymin West
  */
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner tempObj = new Scanner(System.in);
         int newGameUserSelection = 1;
+
+        Settings.runSettings();
 
         while (newGameUserSelection == 1) {
             Die[] currHand = HandOfDice.rollNewHand();
