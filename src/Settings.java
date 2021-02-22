@@ -1,18 +1,18 @@
+/**
+ *The settings class handles the changeable variables for the game of yahtzee. It takes the values from an infile, prompts the
+ * user to change them, and then writes the updates back to the configuration file.
+ *
+ * @author Jaymin West
+ */
+
 import java.io.*;
 import java.nio.file.Files;
 import java.util.Scanner;
 
-/**
- * Settings class:
- *  TODO: fix writing to file,
- *
- * @author Jaymin West
- */
 public class Settings {
     private static int numSides = 6; //Default value
     private static int numDice = 5; //Default value
     private static int numRolls = 3; //Default value
-    private static String fileName = "yahtzeeConfig.txt";
 
     public static void main(String[] args) throws FileNotFoundException {
         runSettings();
