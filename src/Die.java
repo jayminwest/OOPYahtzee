@@ -26,7 +26,7 @@ public class Die {
     public int getFace() {
        return face;
     }
-    public static int getNumFaces() { return numSides;}
+    public static int getNumSides() { return numSides;}
 
     //Setters:
     public void setFace(int newFace) {
