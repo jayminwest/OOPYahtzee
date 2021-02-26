@@ -9,7 +9,7 @@ import static java.lang.String.valueOf;
 public class Die {
    //Fields:
    private int face;
-   private static int numSides = Settings.getNumSides(); //must change this so it comes from settings now
+   private static int numSides = Settings.getNumSides();
 
    //EVC:
    public Die(int paramFace) {

@@ -13,13 +13,15 @@ import java.util.Scanner;
 
 public class HandOfDice {
     private static int numDice = Settings.getNumDice(); //Must change this so value comes from Settings class
-    private static int numRolls = Settings.getNumRolls(); //Must change this so value comes from Settings class
+    private static int numRolls = Settings.getNumRolls(); //Shouldn't be needed in this class
+    public static Die[] currHand = rollNewHand();
 
     /**
      * Uses and returns currHand to play three turns/rolls, aka a "hand". Sorts the hand before returning it
      */
 
     public static Die[] playHand (Die[] currHand) {
+
         for (int i = 0; i < numRolls; i++) {
             displayHand(currHand);
 
@@ -63,12 +65,13 @@ public class HandOfDice {
 
         System.out.println("Enter dice to keep (y or n): ");
 
+        /*
          String userSelection = "";
                      userSelection = tempObj.nextLine();
                      userSelection = userSelection.replaceAll("\\s", ""); //removes spaces/white space
+        */
 
-
-        //String userSelection = "yyyyyyyy"; //*********REMOVE WHEN NOT TESTING************
+        String userSelection = "yyyyyyyy"; //*********REMOVE WHEN NOT TESTING************
 
         //if user doesn't enter in all characters it re-prompts them
         if (userSelection.length() < numDice) {

@@ -8,14 +8,10 @@
  * @author Jaymin West
  */
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class ScoreCard {
-    public static ArrayList<Row> scoreRows;
+    public static ArrayList<ScoreLine> scoreRows;
     /**
      * Takes sorted hand from result of HandOfDice and totals up scores
      *
