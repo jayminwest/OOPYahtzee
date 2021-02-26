@@ -2,7 +2,7 @@ public class NumberScoreLine extends ScoreLine {
 
     public static void makeScoreLine(Die currDie) {
         lineScore = getLineScore(HandOfDice.currHand);
-        lineName = "One's Line";
+        lineName = String.valueOf(currDie.getFace());
         taken = false;
 
     }

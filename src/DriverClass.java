@@ -10,8 +10,9 @@ public class DriverClass {
        Die[] currHand = HandOfDice.rollNewHand();
        currHand = HandOfDice.playHand(currHand);
 
-
-       ScoreLine.createScoreLines(currHand);
+       ScoreLine testScoreLine = null;
+       //testScoreLine = testScoreLine.createScoreLines(currHand);
+       //ScoreLine.createScoreLines(currHand);
 
     }
 }

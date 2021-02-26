@@ -15,8 +15,6 @@ public class ScoreLine {
     }
 
     public static void createScoreLines(Die[] currHand) {
-        for (int numScoreLine = 1; numScoreLine <= numSides; ++numScoreLine) {
-            NumberScoreLine.makeScoreLine(currHand[numScoreLine]);
-        }
+        NumberScoreLine.makeScoreLine(currHand[0]);
     }
 }
