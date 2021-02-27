@@ -11,7 +11,7 @@ public class DriverClass {
        currHand = HandOfDice.playHand(currHand);
 
        ScoreLine testScoreLine = null;
-       //testScoreLine = testScoreLine.createScoreLines(currHand);
+       testScoreLine.createScoreLines(currHand);
        //ScoreLine.createScoreLines(currHand);
 
     }

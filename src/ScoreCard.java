@@ -3,7 +3,61 @@
  * and Display the user's score. The scorecard is split into upper and lower sections and this is refleted in the methods
  * used.
  *
- * TODO: Objects to make: Rows, ScoreRows, change Die[] to object, UpperSection, LowerSection (both should inheret from ScoreCard)
+ * TODO: Try and make this return one long string and have that be displayed
+ *
+ * Behaviors This class should have:
+ * - GiveHand
+ * - SetLine
+ * - toString()
+ *  - Should just be getUpperToString + getLowerToString
+ * - int GetScore()
+ *
+ * Class Notes:
+ *
+ * Two Things in a score card:
+ * - Upper
+ *  - toString();
+ *  Things to have
+ *  - NumericLines (Array list)
+ *  - Bonus
+ *  - ArrayList of ScoreLines
+ *      - Each scoreline has its own behavior/is its own class
+ * - Lower
+ *  - toString();
+ *
+ * ScoreLines:
+ * Values:
+ * - Bool Locked (Once locked it should return its values, if open should calculate)
+ * - current hand
+ * - Score
+ * - Name (should be put into the final returned string!)
+ * - MenuOptionName (i.e. "1s" for ones, "fh" for full house)
+ * Methods:
+ * - giveHand(HandOfDice)
+ * - calcScore
+ * - toString()
+ *  - Dont get the straight valyes from scorelines, have them all formated in a string and return that string
+ * - LockHand(String ChosenMenuOptionName) (This will change the bool)
+ *
+ * Each ScoreLine should have its own class, like fullHouse, 3ofKind, 4ofKind, onesLine, twosLine, etc
+ * Every scoreLine should have a method to calculate itself
+ *
+ *  Upper and Lower should be/inherit from ScoreCardSection objects:
+ *  ScoreCardSection
+ *  - toString()
+ *  - getScore
+ *  - giveHand (Giving a hand to the scoreCard)
+ *  - selectLine(String)
+ *      - The string here is the intials of the line
+ *
+ *  Player Class should do all of the printing, everything should return strings and go into that
+ *
+ * - Plus Global Bonuses
+ *
+ * - Total
+ *  - Total of Upper = upper.getScore();
+ *  - Total of Lower = lower.getScore();
+ *  - Total of Both
  *
  * @author Jaymin West
  */
