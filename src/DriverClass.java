@@ -12,7 +12,5 @@ public class DriverClass {
 
        ScoreLine testScoreLine = null;
        testScoreLine.createScoreLines(currHand);
-       //ScoreLine.createScoreLines(currHand);
-
     }
 }
