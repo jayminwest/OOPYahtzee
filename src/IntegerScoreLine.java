@@ -16,10 +16,8 @@ public class IntegerScoreLine extends ScoreLine {
         lineName = String.valueOf(workingFace) + "'s ";
         lineScore = getLineScore(currHand, workingFace);
         menuName = workingFace + "s"; //This should be outside of this function and passed in, right? I don't know
-        //taken = true; This shouldn't be set to true here, should be set to true when the player selects this lines for the points to go into
 
-        String returnString = makeString();
-        return returnString; //This shouldn't return the string. There should be its own score line
+        return makeString();
     }
 
     private static int getLineScore(ArrayList<Die> currHand, int workingFace) {

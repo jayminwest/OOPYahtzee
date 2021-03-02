@@ -18,8 +18,7 @@ public class YahtzeeScoreLine extends ScoreLine {
         lineName = "Yahtzee";
         lineScore = getLineScore(currHand);
 
-        String returnString = makeString();
-        return returnString;
+        return makeString();
     }
     /**
      *

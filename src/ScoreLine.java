@@ -17,11 +17,7 @@ public class ScoreLine {
      * @param workingFace
      * @return
      */
-    public static String createUpperScoreLines(ArrayList<Die> currHand, int workingFace) {
-        String scoreLineString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace);
-
-        return scoreLineString;
-    }
+    public static String createUpperScoreLines(ArrayList<Die> currHand, int workingFace) { return IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); }
 
     public static String createLowerScoreLines(ArrayList<Die> currHand, String menuOption) {
         String scoreLineString = "";

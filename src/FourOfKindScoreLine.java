@@ -12,8 +12,7 @@ public class FourOfKindScoreLine extends ScoreLine {
         lineName = "Four of a Kind";
         lineScore = getLineScore(currHand);
 
-        String returnString = makeString();
-        return returnString;
+        return makeString();
     }
 
     private static int getLineScore(ArrayList<Die> currHand) {

@@ -20,8 +20,7 @@ public class ThreeOfKindScoreLine extends ScoreLine {
         lineName = "Three of a Kind";
         lineScore = getLineScore(currHand);
 
-        String returnString = makeString();
-        return returnString;
+        return makeString();
     }
 
     /**
