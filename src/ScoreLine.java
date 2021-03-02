@@ -30,8 +30,8 @@ public class ScoreLine {
 
         System.out.println(workingFace);
 
-       // String tempString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); //working face should change based on the userSelection
-           // System.out.println(tempString);
+       String tempString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); //working face should change based on the userSelection
+            System.out.println(tempString);
 
     }
 
