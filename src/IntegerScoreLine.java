@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * This class handles the score lines of all the integer lines in the upper score card
  */
 public class IntegerScoreLine extends ScoreLine {
-
+    //DVC
     public IntegerScoreLine() {
         lineScore = 0;
         lineName = "NULL";
@@ -15,7 +15,7 @@ public class IntegerScoreLine extends ScoreLine {
     public static String makeIntegerScoreLine(ArrayList<Die> currHand, int workingFace) {
         lineName = String.valueOf(workingFace) + "'s ";
         lineScore = getLineScore(currHand, workingFace);
-        menuName = workingFace + "s"; //This should be outside of this function and passed in, right?
+        menuName = workingFace + "s"; //This should be outside of this function and passed in, right? I don't know
         //taken = true; This shouldn't be set to true here, should be set to true when the player selects this lines for the points to go into
 
         String returnString = makeString();

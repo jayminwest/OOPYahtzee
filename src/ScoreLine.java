@@ -33,6 +33,9 @@ public class ScoreLine {
         String tempString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); //working face should change based on the userSelection
             System.out.println(tempString);
 
+        tempString = ThreeOfKindScoreLine.makeThreeOfKindScoreLine(currHand);
+            System.out.println(tempString);
+
     }
 
     public static String getUserMenuOption() {

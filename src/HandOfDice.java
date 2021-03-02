@@ -11,7 +11,6 @@ import java.util.*;
 public class HandOfDice {
     private static int numDice = Settings.getNumDice(); //Must change this so value comes from Settings class
     private static int numRolls = Settings.getNumRolls(); //Shouldn't be needed in this class
-   // public static Die[] currHand = rollNewHand();
     public static ArrayList<Die> currHand = rollNewHand(); //This is a better option but requries lots of changing
 
     /**
