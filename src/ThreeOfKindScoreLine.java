@@ -63,7 +63,7 @@ public class ThreeOfKindScoreLine extends ScoreLine {
     private static String makeString() {
             String tempScoreLineString = "";
 
-            tempScoreLineString += "3 of a kind - " + lineScore + " pts" + " - " + "Taken: " + taken;
+            tempScoreLineString += lineName + " - " + lineScore + " pts - Taken: " + taken;
 
             return tempScoreLineString;
     }

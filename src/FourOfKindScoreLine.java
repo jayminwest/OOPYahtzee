@@ -3,13 +3,12 @@ import java.util.ArrayList;
 public class FourOfKindScoreLine extends ScoreLine {
     public FourOfKindScoreLine() {
         lineScore = 0;
-        lineName = "NULL";
+        lineName = "Four of a Kind";
         taken = false;
         menuName = "fk";
     }
 
     public static String makeFourOfKindScoreLine(ArrayList<Die> currHand) {
-        lineName = "Four of a Kind";
         lineScore = getLineScore(currHand);
 
         return makeString();
@@ -46,7 +45,7 @@ public class FourOfKindScoreLine extends ScoreLine {
     private static String makeString() {
         String tempScoreLineString = "";
 
-        tempScoreLineString += "4 of a kind - " + lineScore + " pts - Taken: " + taken;
+        tempScoreLineString += lineName + " - " + lineScore + " pts - Taken: " + taken;
 
         return tempScoreLineString;
     }
