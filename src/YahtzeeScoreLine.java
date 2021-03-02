@@ -7,7 +7,7 @@ public class YahtzeeScoreLine extends ScoreLine {
     //DVC
     public YahtzeeScoreLine() {
         lineScore = 0;
-        lineName = "NULL";
+        lineName = "Yahtzee";
         taken = false;
         menuName = "y";
     }
@@ -15,7 +15,6 @@ public class YahtzeeScoreLine extends ScoreLine {
      *
      */
     public static String makeYahtzeeScoreLine(ArrayList<Die> currHand) {
-        lineName = "Yahtzee";
         lineScore = getLineScore(currHand);
 
         return makeString();

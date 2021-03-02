@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class ThreeOfKindScoreLine extends ScoreLine {
     public ThreeOfKindScoreLine() {
         lineScore = 0;
-        lineName = "NULL";
+        lineName = "Three of a Kind";
         taken = false;
         menuName = "tk";
     }
@@ -17,7 +17,6 @@ public class ThreeOfKindScoreLine extends ScoreLine {
      * @return
      */
     public static String makeThreeOfKindScoreLine(ArrayList<Die> currHand) {
-        lineName = "Three of a Kind";
         lineScore = getLineScore(currHand);
 
         return makeString();
