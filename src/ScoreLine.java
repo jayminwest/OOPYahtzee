@@ -25,11 +25,23 @@ public class ScoreLine {
 
         String userSelection = getUserMenuOption(); //Make this so it can take any number+"s" for infinite numFaces i.e. 9s 12s
 
+        /**
+         * get user input method:
+         *  get the user string
+         *      check how long it is
+         *          if it is one char just take the value, as it is probably a number
+         *          if it is more than one char, take the whole string and have a case statement for those options
+         *  use the Character.getNumericValue() method
+         *
+         *  Or, dont do any of that and have each scoreline have its own menu name
+         *      then take the input, check if it matches any of them, if not ignore
+         *          if it does set it to locked
+         */
         workingFace = Character.getNumericValue(userSelection.charAt(0)); //This needs to work for any int value.
 
         System.out.println(workingFace);
 
-        String tempString = IntegerScoreLine.makeScoreLine(currHand, workingFace); //working face should change based on the userSelection
+        String tempString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); //working face should change based on the userSelection
             System.out.println(tempString);
 
     }

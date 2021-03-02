@@ -4,9 +4,10 @@ public class IntegerScoreLine extends ScoreLine {
         lineScore = 0;
         lineName = "NULL";
         taken = false;
+        //should also have menu name here
     }
 
-    public static String makeScoreLine(Die[] currHand, int workingFace) {
+    public static String makeIntegerScoreLine(Die[] currHand, int workingFace) {
         String returnString = "";
 
         lineName = String.valueOf(workingFace) + "'s " + "line";
@@ -15,7 +16,7 @@ public class IntegerScoreLine extends ScoreLine {
 
         returnString = lineName + "/" + lineScore + "/" + taken;
 
-        return returnString;
+        return returnString; //This shouldn't return the string. There should be its own score line
     }
 
     public static int getLineScore(Die[] currHand, int workingFace) {
@@ -28,5 +29,10 @@ public class IntegerScoreLine extends ScoreLine {
         }
 
         return workingLineScore;
+    }
+
+    public String toString() {
+        String temp = "temp";
+        return temp;
     }
 }

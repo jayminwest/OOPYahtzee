@@ -59,6 +59,31 @@
  *  - Total of Lower = lower.getScore();
  *  - Total of Both
  *
+ * create compare to functions
+ *
+ * ScoreSection should be parent to upper and lower
+ *  Upper and lower should be an array list of all the lines
+ *      Shouldn't need a consistent number or size to be created
+ *
+ *
+ *Each scoreLine should have its own menu name
+ *
+ * Investigate using loops like for (Integer count : diceCounts) or (Die die : currHand)
+ *
+ * Calc total should be in upper and lower
+ *
+ * upper score card should just be returning one long string with new line characters
+ *
+ * string user enters should be in player class, same with dice rolling
+ *
+ * Example score line:
+ * [1s] - 1's 0 pts. -- locked: false
+ *
+ * to make things comparable
+ * implements comparable<thing comparing to></thing>
+    override compareto(whatever type comparing to)
+        return compareTo(comparing thing)
+ *
  * @author Jaymin West
  */
 
