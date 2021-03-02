@@ -50,7 +50,7 @@ public class ThreeOfKindScoreLine extends ScoreLine {
         }
 
         for (int i = 1; i < numSides; ++i) {
-            if (diceFrequency.get(i) == 3) {
+            if (diceFrequency.get(i) >= 3) {
                 return workingLineScore;
             }
         }

@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static java.lang.Integer.valueOf;
-
 /**
  *
  */
@@ -14,12 +11,30 @@ public class ScoreLine {
     public static int numDice = Settings.getNumDice();
     public static int numSides = Settings.getNumSides();
 
-    public static String createScoreLines(ArrayList<Die> currHand, int workingFace) {
+    /**
+     *
+     * @param currHand
+     * @param workingFace
+     * @return
+     */
+    public static String createUpperScoreLines(ArrayList<Die> currHand, int workingFace) {
         String scoreLineString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace);
 
         return scoreLineString;
     }
 
+    public static String createLowerScoreLines(ArrayList<Die> currHand, String menuOption) {
+        String scoreLineString = "";
+
+        //could return all of lower score sheet as a string
+
+        return scoreLineString;
+    }
+
+    /**
+     * This is probably not needed in this class, but i am keeping it here because I know I'll need this exact method
+     * in a different class in the future
+     */
     public static String getUserMenuOption() {
         Scanner userSelectionScanner = new Scanner(System.in);
         String userSelection = "";

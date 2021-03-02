@@ -1,13 +1,23 @@
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class UpperSection extends ScoreSection {
-    //private static ArrayList<ScoreLine> scoreLines = makeScoreLines();
+    /**
+     *
+     */
     public static String getUpperSection(ArrayList<Die> currHand) {
         ArrayList<String> scoreLines = makeScoreLines(currHand);
 
         return makeString(scoreLines);
     }
 
+    /**
+     *
+     * @param currHand
+     * @return
+     */
     public static ArrayList<String> makeScoreLines(ArrayList<Die> currHand) {
         ArrayList<String> newScoreLines = new ArrayList<String>(numSides);
         ScoreLine tempScoreLine = null;
@@ -17,12 +27,17 @@ public class UpperSection extends ScoreSection {
         }
 
         for (int i = 1; i <= numSides; i++) {
-            newScoreLines.add(i, tempScoreLine.createScoreLines(currHand, i));
+            newScoreLines.add(i, tempScoreLine.createUpperScoreLines(currHand, i));
         }
 
         return newScoreLines;
     }
 
+    /**
+     *
+     * @param scoreLines
+     * @return
+     */
     private static String makeString(ArrayList<String> scoreLines) {
         String upperSectionString = "";
 

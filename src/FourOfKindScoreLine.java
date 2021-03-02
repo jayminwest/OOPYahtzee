@@ -37,7 +37,7 @@ public class FourOfKindScoreLine extends ScoreLine {
         }
 
         for (int i = 1; i < numSides; ++i) {
-            if (diceFrequency.get(i) == 4) {
+            if (diceFrequency.get(i) >= 4) {
                 return workingLineScore;
             }
         }
@@ -47,7 +47,7 @@ public class FourOfKindScoreLine extends ScoreLine {
     private static String makeString() {
         String tempScoreLineString = "";
 
-        tempScoreLineString += "4 of a kind - " + lineScore + " pts" + " - " + "Taken: " + taken;
+        tempScoreLineString += "4 of a kind - " + lineScore + " pts - Taken: " + taken;
 
         return tempScoreLineString;
     }
