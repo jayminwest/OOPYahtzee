@@ -69,6 +69,7 @@
  * Each scoreLine should have its own menu name
  *
  * Investigate using loops like for (Integer count : diceCounts) or (Die die : currHand)
+ *      These are for each loops
  *
  * Calc total should be in upper and lower
  *

@@ -19,6 +19,7 @@ public class ScoreLine {
     public static void createScoreLines(Die[] currHand) {
         int workingFace = 0;
 
+        //THIS SHOULD BE IN PLAYER CLASS:
         String userSelection = getUserMenuOption(); //Make this so it can take any number+"s" for infinite numFaces i.e. 9s 12s
 
         /**
@@ -28,9 +29,7 @@ public class ScoreLine {
          */
         workingFace = Character.getNumericValue(userSelection.charAt(0)); //This needs to work for any int value.
 
-        System.out.println(workingFace);
-
-       String tempString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); //working face should change based on the userSelection
+        String tempString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); //working face should change based on the userSelection
             System.out.println(tempString);
 
     }
