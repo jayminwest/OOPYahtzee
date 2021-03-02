@@ -11,14 +11,10 @@ public class ScoreLine {
     public static int lineScore; //The score on the current line
     public static String lineName; //Line name used for display purposes.
     public static boolean taken; //Tells program if line has been used already. Should be the first thing that is checked in each ScoreLine class
-    public static String menuOption; //(short, two chars) This is what the user enters to determine which line is being used (one's(1s), two's(2s), 3 of kind(3k), full house(fh), etc)
+    public static String menuName; //(short, two chars) This is what the user enters to determine which line is being used (one's(1s), two's(2s), 3 of kind(3k), full house(fh), etc)
     public static HandOfDice currentHand; //What is being compared/used to create each ScoreLine
     public static int numDice = Settings.getNumDice();
     public static int numSides = Settings.getNumSides();
-
-    public static void main(String args[]) {
-
-    }
 
     public static void createScoreLines(Die[] currHand) {
         int workingFace = 0;
@@ -26,13 +22,6 @@ public class ScoreLine {
         String userSelection = getUserMenuOption(); //Make this so it can take any number+"s" for infinite numFaces i.e. 9s 12s
 
         /**
-         * get user input method:
-         *  get the user string
-         *      check how long it is
-         *          if it is one char just take the value, as it is probably a number
-         *          if it is more than one char, take the whole string and have a case statement for those options
-         *  use the Character.getNumericValue() method
-         *
          *  Or, dont do any of that and have each scoreline have its own menu name
          *      then take the input, check if it matches any of them, if not ignore
          *          if it does set it to locked
@@ -41,8 +30,8 @@ public class ScoreLine {
 
         System.out.println(workingFace);
 
-        String tempString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); //working face should change based on the userSelection
-            System.out.println(tempString);
+       // String tempString = IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); //working face should change based on the userSelection
+           // System.out.println(tempString);
 
     }
 

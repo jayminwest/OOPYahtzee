@@ -66,7 +66,7 @@
  *      Shouldn't need a consistent number or size to be created
  *
  *
- *Each scoreLine should have its own menu name
+ * Each scoreLine should have its own menu name
  *
  * Investigate using loops like for (Integer count : diceCounts) or (Die die : currHand)
  *
