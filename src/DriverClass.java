@@ -9,10 +9,8 @@ public class DriverClass {
        ArrayList<Die> currHand = HandOfDice.rollNewHand();
        currHand = HandOfDice.playHand(currHand);
 
-       ScoreLine testScoreLine = null;
-       testScoreLine.createScoreLines(currHand);
+      String tempString = UpperSection.getUpperSection(currHand);
+        System.out.println(tempString);
 
-
-       testScoreLine.createScoreLines(currHand);
     }
 }

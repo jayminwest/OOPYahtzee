@@ -1,3 +1,3 @@
-public class LowerSection extends ScoreCard {
+public class LowerSection extends ScoreSection {
 
 }
