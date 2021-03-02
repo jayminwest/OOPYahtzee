@@ -40,7 +40,7 @@ public class FourOfKindScoreLine extends ScoreLine {
                 return workingLineScore;
             }
         }
-        return workingLineScore;
+        return 0;
     }
 
     private static String makeString() {
