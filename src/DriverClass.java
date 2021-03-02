@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Arrays;
  */
 public class DriverClass {
     public static void main(String args[]) {
-       Die[] currHand = HandOfDice.rollNewHand();
+       ArrayList<Die> currHand = HandOfDice.rollNewHand();
        currHand = HandOfDice.playHand(currHand);
 
        ScoreLine testScoreLine = null;

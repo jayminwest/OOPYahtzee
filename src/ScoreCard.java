@@ -97,12 +97,12 @@ public class ScoreCard {
      *
      * @param sortedHand which is passed in from HandOfDice
      */
-    public static void processSortedHand(Die[] sortedHand) {
-        ArrayList<Integer> upperScores = getUpperScores(sortedHand);
+    public static void processSortedHand(ArrayList<Die> sortedHand) {
+        //ArrayList<Integer> upperScores = getUpperScores(sortedHand);
 
-        ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
+        //ArrayList<Integer> lowerScores = getLowerScores(sortedHand, upperScores);
 
-        displayScoreCard(upperScores, lowerScores);
+        //displayScoreCard(upperScores, lowerScores);
     }
 
     /**

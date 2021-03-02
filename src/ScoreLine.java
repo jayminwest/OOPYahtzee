@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.Integer.valueOf;
@@ -16,7 +17,7 @@ public class ScoreLine {
     public static int numDice = Settings.getNumDice();
     public static int numSides = Settings.getNumSides();
 
-    public static void createScoreLines(Die[] currHand) {
+    public static void createScoreLines(ArrayList<Die> currHand) {
         int workingFace = 0;
 
         //THIS SHOULD BE IN PLAYER CLASS:

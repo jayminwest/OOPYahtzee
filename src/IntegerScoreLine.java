@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * This class handles the score lines of all the integer lines in the upper score card
  */
@@ -10,7 +12,7 @@ public class IntegerScoreLine extends ScoreLine {
         menuName = "Integer";
     }
 
-    public static String makeIntegerScoreLine(Die[] currHand, int workingFace) {
+    public static String makeIntegerScoreLine(ArrayList<Die> currHand, int workingFace) {
         lineName = String.valueOf(workingFace) + "'s ";
         lineScore = getLineScore(currHand, workingFace);
         menuName = workingFace + "s"; //This should be outside of this function and passed in, right?
@@ -20,12 +22,12 @@ public class IntegerScoreLine extends ScoreLine {
         return returnString; //This shouldn't return the string. There should be its own score line
     }
 
-    private static int getLineScore(Die[] currHand, int workingFace) {
+    private static int getLineScore(ArrayList<Die> currHand, int workingFace) {
         int workingLineScore = 0;
 
         for (int posInHand = 0; posInHand < numDice; ++posInHand) {
-            if (workingFace == currHand[posInHand].getFace()) {
-                workingLineScore += currHand[posInHand].getFace();
+            if (workingFace == currHand.get(posInHand).getFace()) {
+                workingLineScore += currHand.get(posInHand).getFace();
             }
         }
 

@@ -6,22 +6,20 @@
  *
  */
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 public class HandOfDice {
     private static int numDice = Settings.getNumDice(); //Must change this so value comes from Settings class
     private static int numRolls = Settings.getNumRolls(); //Shouldn't be needed in this class
-    public static Die[] currHand = rollNewHand();
-    //public static ArrayList<Die> currHand = rollNewHand(); This is a better option but requries lots of changing
+   // public static Die[] currHand = rollNewHand();
+    public static ArrayList<Die> currHand = rollNewHand(); //This is a better option but requries lots of changing
 
     /**
      * Uses and returns currHand to play three turns/rolls, aka a "hand". Sorts the hand before returning it
+     * @param currHand
      */
 
-    public static Die[] playHand (Die[] currHand) {
+    public static ArrayList<Die> playHand (ArrayList<Die> currHand) {
 
         for (int i = 0; i < numRolls; i++) {
             displayHand(currHand);
@@ -31,8 +29,8 @@ public class HandOfDice {
             processUserSelection(numDice, userSelection, currHand);
         }
 
-        Arrays.sort(currHand, Comparator.comparing(Die::getFace)); //Sorts the hand in ascending order
-            System.out.println("Your final sorted hand is: " + Arrays.toString(currHand));
+        Collections.sort(currHand, Comparator.comparing(Die::getFace)); //Sorts the hand in ascending order
+            System.out.println("Your final sorted hand is: " + currHand.toString());
 
         return currHand;
     }
@@ -41,11 +39,11 @@ public class HandOfDice {
      * Returns a random hand of dice
      * @return Die[] full of random faces from the Die DVC
      */
-    public static Die[] rollNewHand() {
-        Die[] newHand = new Die[numDice];
+    public static ArrayList<Die> rollNewHand() {
+        ArrayList<Die> newHand = new ArrayList<Die>();
 
         for (int i = 0; i < numDice; i++) {
-            newHand[i] = new Die();
+            newHand.add(i, new Die());
         }
 
         return newHand;
@@ -55,8 +53,8 @@ public class HandOfDice {
      * Displays the hand that is passed in
      * @param currHand where currHand is the current hand
      */
-    public static void displayHand(Die[] currHand) {
-        System.out.println("Your hand is: " + Arrays.toString(currHand));
+    public static void displayHand(ArrayList<Die> currHand) {
+        System.out.println("Your hand is: " + Arrays.toString(new ArrayList[]{currHand}));
     }
 
     //Asks user to enter their choices and returns them as a string
@@ -90,14 +88,14 @@ public class HandOfDice {
      * @param currHand this is the current hand passed in
      * @return Die[]
      */
-    public static Die[] processUserSelection(int numDice, String userSelection, Die[] currHand) {
+    public static ArrayList<Die> processUserSelection(int numDice, String userSelection, ArrayList<Die> currHand) {
         char tempChar;
 
         //This loop checks the user input for the number of Dice and either keeps or rolls a new dice depending on user input
         for (int i = 0; i < numDice; i++) {
             tempChar = userSelection.charAt(i);
                 if (tempChar != 'y') {
-                    currHand[i] = new Die();
+                    currHand.set(i, new Die());
                 }
         }
 

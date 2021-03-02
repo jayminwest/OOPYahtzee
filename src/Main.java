@@ -11,6 +11,7 @@
  */
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -21,7 +22,7 @@ public class Main {
         Settings.runSettings();
 
         while (newGameUserSelection == 1) {
-            Die[] currHand = HandOfDice.rollNewHand();
+            ArrayList<Die> currHand = HandOfDice.rollNewHand();
 
             HandOfDice.playHand(currHand);
 
