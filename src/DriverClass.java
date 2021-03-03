@@ -10,9 +10,9 @@ public class DriverClass {
         //Testing purposes:
         currHand.get(0).setFace(1);
         currHand.get(1).setFace(1);
-        currHand.get(2).setFace(1);
-        currHand.get(3).setFace(1);
-        currHand.get(4).setFace(1);
+        currHand.get(2).setFace(2);
+        currHand.get(3).setFace(2);
+        currHand.get(4).setFace(2);
 
        currHand = HandOfDice.playHand(currHand);
        String tempString = "";
