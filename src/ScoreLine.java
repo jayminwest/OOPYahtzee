@@ -12,12 +12,13 @@ public class ScoreLine {
     public static int numSides = Settings.getNumSides();
 
     /**
-     *
      * @param currHand
      * @param workingFace
      * @return
      */
-    public static String createUpperScoreLines(ArrayList<Die> currHand, int workingFace) { return IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); }
+    public static String createUpperScoreLines(ArrayList<Die> currHand, int workingFace) {
+        return IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace);
+    }
 
     public static ArrayList<String> createLowerScoreLines(ArrayList<Die> currHand, int numRows) {
         ArrayList<String> scoreLineString = new ArrayList<>(numRows);
@@ -42,9 +43,26 @@ public class ScoreLine {
         String userSelection = "";
 
         System.out.println("Enter Menu Option: ");
-            userSelection = userSelectionScanner.nextLine();
-            userSelection = userSelection.replaceAll("\\s", "");
+        userSelection = userSelectionScanner.nextLine();
+        userSelection = userSelection.replaceAll("\\s", "");
 
         return userSelection;
+    }
+
+    public static int findMaxString(ArrayList<Die> currHand) {
+        int maxLength = 1;
+        int curLength = 1;
+
+        for (int counter = 0; counter < numSides - 2; counter++) {
+            if (currHand.get(counter).getFace() + 1 == currHand.get(counter + 1).getFace()) { //jump of 1
+                curLength++;
+            } else if (currHand.get(counter).getFace() + 1 < currHand.get(counter + 1).getFace()) {//jump of >= 2
+                curLength = 1;
+            }
+        }
+        if (curLength > maxLength) {
+            maxLength = curLength;
+        }
+        return maxLength;
     }
 }

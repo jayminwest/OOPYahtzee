@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class LargeStraightScoreLine extends ScoreLine {
+    public static int targetStraightSize = 5; //this is by default yahtzee rules
+
     public LargeStraightScoreLine() {
         lineScore = 0;
         lineName = "Large Straight";
@@ -16,8 +18,9 @@ public class LargeStraightScoreLine extends ScoreLine {
     }
 
     private static int getLineScore(ArrayList<Die> currHand) {
-
-
+        if (findMaxString(currHand) >= targetStraightSize) {
+            return 40; //Default Yahtzee rules dictates this should be 40
+        }
 
         return 0;
     }
