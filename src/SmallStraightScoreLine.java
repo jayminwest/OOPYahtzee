@@ -13,6 +13,7 @@ public class SmallStraightScoreLine extends ScoreLine {
     }
 
     public static String makeSmallStraightScoreLine(ArrayList<Die> currHand) {
+        lineName = "Small Straight";
         lineScore = getLineScore(currHand);
 
         return makeString();

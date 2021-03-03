@@ -17,6 +17,7 @@ public class ThreeOfKindScoreLine extends ScoreLine {
      * @return
      */
     public static String makeThreeOfKindScoreLine(ArrayList<Die> currHand) {
+        lineName = "Three of a Kind";
         lineScore = getLineScore(currHand);
 
         return makeString();

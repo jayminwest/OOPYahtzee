@@ -15,6 +15,7 @@ public class YahtzeeScoreLine extends ScoreLine {
      *
      */
     public static String makeYahtzeeScoreLine(ArrayList<Die> currHand) {
+        lineName = "Yahtzee";
         lineScore = getLineScore(currHand);
 
         return makeString();
@@ -41,7 +42,7 @@ public class YahtzeeScoreLine extends ScoreLine {
     private static String makeString() {
         String tempScoreLineString = "";
 
-        tempScoreLineString += "Yahtzee - " + lineScore + " pts - Taken: " + taken;
+        tempScoreLineString += lineName + " - " + lineScore + " pts - Taken: " + taken;
 
         return tempScoreLineString;
     }

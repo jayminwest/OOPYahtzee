@@ -9,6 +9,7 @@ public class FullHouseScoreLine extends ScoreLine {
     }
 
     public static String makeFullHouseScoreLine(ArrayList<Die> currHand) {
+        lineName = "Full House";
         lineScore = getLineScore(currHand);
 
         return makeString();

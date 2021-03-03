@@ -18,7 +18,7 @@ public class UpperSection extends ScoreSection {
      * @param currHand
      * @return
      */
-    public static ArrayList<String> makeScoreLines(ArrayList<Die> currHand) {
+    private static ArrayList<String> makeScoreLines(ArrayList<Die> currHand) {
         ArrayList<String> newScoreLines = new ArrayList<>(numSides);
         ScoreLine tempScoreLine = null;
 

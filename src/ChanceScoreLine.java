@@ -9,16 +9,20 @@ public class ChanceScoreLine extends ScoreLine {
     }
 
     public static String makeChanceScoreLine(ArrayList<Die> currHand) {
+        lineName = "Chance";
         lineScore = getLineScore(currHand);
 
         return makeString();
     }
 
     private static int getLineScore(ArrayList<Die> currHand) {
+        int workingLineScore = 0;
 
+        for (int i = 0; i < numDice; ++i) {
+            workingLineScore += currHand.get(i).getFace();
+        }
 
-
-        return 0;
+        return workingLineScore;
     }
 
     private static String makeString() {

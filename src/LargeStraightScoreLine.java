@@ -9,6 +9,7 @@ public class LargeStraightScoreLine extends ScoreLine {
     }
 
     public static String makeLargeStraightScoreLine(ArrayList<Die> currHand) {
+        lineName = "Large Straight";
         lineScore = getLineScore(currHand);
 
         return makeString();

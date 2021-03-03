@@ -19,10 +19,16 @@ public class ScoreLine {
      */
     public static String createUpperScoreLines(ArrayList<Die> currHand, int workingFace) { return IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace); }
 
-    public static String createLowerScoreLines(ArrayList<Die> currHand, String menuOption) {
-        String scoreLineString = "";
+    public static ArrayList<String> createLowerScoreLines(ArrayList<Die> currHand, int numRows) {
+        ArrayList<String> scoreLineString = new ArrayList<>(numRows);
 
-        //could return all of lower score sheet as a string
+        scoreLineString.add(0, ThreeOfKindScoreLine.makeThreeOfKindScoreLine(currHand));
+        scoreLineString.add(1, FourOfKindScoreLine.makeFourOfKindScoreLine(currHand));
+        scoreLineString.add(2, FullHouseScoreLine.makeFullHouseScoreLine(currHand));
+        scoreLineString.add(3, SmallStraightScoreLine.makeSmallStraightScoreLine(currHand));
+        scoreLineString.add(4, LargeStraightScoreLine.makeLargeStraightScoreLine(currHand));
+        scoreLineString.add(5, YahtzeeScoreLine.makeYahtzeeScoreLine(currHand));
+        scoreLineString.add(6, ChanceScoreLine.makeChanceScoreLine(currHand));
 
         return scoreLineString;
     }
