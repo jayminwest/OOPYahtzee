@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
 /**
- *
+ * ScoreLine is in a way the driver file for creating the ScoreLines that make up the ScoreSections
  */
 public class ScoreLine {
     public static int lineScore; //The score on the current line
@@ -12,14 +13,23 @@ public class ScoreLine {
     public static int numSides = Settings.getNumSides();
 
     /**
-     * @param currHand
-     * @param workingFace
-     * @return
+     * createUpperScoreLines is what UpperSection calls to create itself.
+     *
+     * @param currHand current hand
+     * @param workingFace this is the current dice face that is passed in
+     * @return String of the entire UpperScoreSection
      */
     public static String createUpperScoreLines(ArrayList<Die> currHand, int workingFace) {
         return IntegerScoreLine.makeIntegerScoreLine(currHand, workingFace);
     }
 
+    /**
+     * createLowerScoreLines is what LowerSection calls to create itself.
+     *
+     * @param currHand current hand
+     * @param numRows this determines the size of the ArrayList based on how may rows are in the lowerSection
+     * @return String of the entire UpperScoreSection
+     */
     public static ArrayList<String> createLowerScoreLines(ArrayList<Die> currHand, int numRows) {
         ArrayList<String> scoreLineString = new ArrayList<>(numRows);
 
@@ -35,25 +45,18 @@ public class ScoreLine {
     }
 
     /**
-     * This is probably not needed in this class, but i am keeping it here because I know I'll need this exact method
-     * in a different class in the future
+     * findMaxStraight seaches the current hand for any straights and returns the size of the largest one.
+     * This method is used by the Large and SmallStraightScoreLine classes
+     *
+     * @param currHand
+     * @return maxLength of any straights found
      */
-    public static String getUserMenuOption() {
-        Scanner userSelectionScanner = new Scanner(System.in);
-        String userSelection = "";
-
-        System.out.println("Enter Menu Option: ");
-        userSelection = userSelectionScanner.nextLine();
-        userSelection = userSelection.replaceAll("\\s", "");
-
-        return userSelection;
-    }
-
-    public static int findMaxString(ArrayList<Die> currHand) {
+    public static int findMaxStraight(ArrayList<Die> currHand) {
         int maxLength = 1;
         int curLength = 1;
 
         for (int counter = 0; counter < numSides - 2; counter++) {
+            /**KNOWN BUG: This line causes an index error when numSides > numDice*/
             if (currHand.get(counter).getFace() + 1 == currHand.get(counter + 1).getFace()) { //jump of 1
                 curLength++;
             } else if (currHand.get(counter).getFace() + 1 < currHand.get(counter + 1).getFace()) {//jump of >= 2
