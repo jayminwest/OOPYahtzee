@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 /**
- * This class is used for calculating hands that may be three of a kind
+ * This class is used for calculating hands that may have three of a kind
  */
 public class ThreeOfKindScoreLine extends ScoreLine {
+    //DVC
     public ThreeOfKindScoreLine() {
         lineScore = 0;
         lineName = "Three of a Kind";
@@ -12,9 +13,11 @@ public class ThreeOfKindScoreLine extends ScoreLine {
     }
 
     /**
+     * Driver method for this class. This is what is called from outside of this class.
+     * Sets the line name to Three of a Kind for the makeString() method
      *
      * @param currHand
-     * @return
+     * @return makeString()'s result
      */
     public static String makeThreeOfKindScoreLine(ArrayList<Die> currHand) {
         lineName = "Three of a Kind";
@@ -24,9 +27,10 @@ public class ThreeOfKindScoreLine extends ScoreLine {
     }
 
     /**
+     * getLineScore calculates the score total of the ThreeOfKindScoreLine
      *
      * @param currHand
-     * @return
+     * @return workingLineScore, basically the sum of all the dice in the hand
      */
     private static int getLineScore(ArrayList<Die> currHand) {
         int workingLineScore = 0;
@@ -58,8 +62,9 @@ public class ThreeOfKindScoreLine extends ScoreLine {
     }
 
     /**
+     * makeString() acts as the final product of this class. it takes all relevant info and puts it into a string
      *
-     * @return String
+     * @return the final scoreLine String
      */
     private static String makeString() {
             String tempScoreLineString = "";

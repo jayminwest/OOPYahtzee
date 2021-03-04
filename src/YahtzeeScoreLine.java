@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- *
+ * This class is used for calculating hands that may be a yahtzee
  */
 public class YahtzeeScoreLine extends ScoreLine {
     //DVC
@@ -11,8 +11,13 @@ public class YahtzeeScoreLine extends ScoreLine {
         taken = false;
         menuName = "y";
     }
+
     /**
+     * Driver method for this class. This is what is called from outside of this class.
+     * Sets the line name to Yahtzee for the makeString() method
      *
+     * @param currHand
+     * @return makeString()'s result
      */
     public static String makeYahtzeeScoreLine(ArrayList<Die> currHand) {
         lineName = "Yahtzee";
@@ -20,8 +25,12 @@ public class YahtzeeScoreLine extends ScoreLine {
 
         return makeString();
     }
+
     /**
+     * getLineScore calculates the score total of the YahtzeeScoreLine
      *
+     * @param currHand
+     * @return 100 or 0 based on if there was a yahtzee found or not
      */
     private static int getLineScore(ArrayList<Die> currHand) {
         int diceCount = 0;
@@ -39,6 +48,11 @@ public class YahtzeeScoreLine extends ScoreLine {
         return 0;
     }
 
+    /**
+     * makeString() acts as the final product of this class. it takes all relevant info and puts it into a string
+     *
+     * @return the final scoreLine String
+     */
     private static String makeString() {
         String tempScoreLineString = "";
 

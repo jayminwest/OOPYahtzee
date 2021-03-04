@@ -12,6 +12,13 @@ public class IntegerScoreLine extends ScoreLine {
         menuName = "Integer";
     }
 
+    /**
+     * Driver method for this class. This is what is called from outside of this class.
+     * Sets the line name to the working face + 's for the makeString() method
+     *
+     * @param currHand
+     * @return makeString()'s result
+     */
     public static String makeIntegerScoreLine(ArrayList<Die> currHand, int workingFace) {
         lineName = String.valueOf(workingFace) + "'s ";
         lineScore = getLineScore(currHand, workingFace);
@@ -20,6 +27,13 @@ public class IntegerScoreLine extends ScoreLine {
         return makeString();
     }
 
+    /**
+     * getLineScore calculates the score total of the IntegerScoreLine
+     *
+     * @param currHand
+     * @param workingFace which is the face that is passed in at the calling of this class
+     * @return workingLineScore, basically the sum of all the same faces in the hand
+     */
     private static int getLineScore(ArrayList<Die> currHand, int workingFace) {
         int workingLineScore = 0;
 
@@ -32,6 +46,11 @@ public class IntegerScoreLine extends ScoreLine {
         return workingLineScore;
     }
 
+    /**
+     * makeString() acts as the final product of this class. it takes all relevant info and puts it into a string
+     *
+     * @return the final scoreLine String
+     */
     private static String makeString() {
         String tempScoreLineString = "";
 
